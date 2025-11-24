@@ -1,0 +1,41 @@
+# Use version 1 of the apps API
+apiVersion: apps/v1
+
+# This a Deployment resource
+kind: Deployment
+
+# Name and labels for the Deployment
+metadata:
+  name: myapp-deployment
+
+  labels:
+    app: myapp
+    type: front-end
+
+# Define the Deployment specifications
+spec:
+
+  # Maintain 6 replicas of the pod
+  replicas: 6
+
+  # Manage pods with the label `app: myapp`
+  selector:
+    matchLabels:
+      app: myapp
+  
+  # Define the pod template
+  template:
+
+    # Name and labels for the pod
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+
+    # Define the pod specifications
+    spec:
+
+      # Containers to run in the pod
+      containers:
+        - name: nginx-container
+          image: nginx:error
